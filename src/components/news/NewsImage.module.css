@@ -1,0 +1,132 @@
+.mainContainer {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1087px;
+	margin: 0 auto;
+}
+
+section {
+	max-width: 780px;
+	background-color: #1e2122;
+	padding: 18px 20px;
+	margin-bottom: 13px;
+}
+
+.userInfo {
+	max-width: 250px;
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	margin-bottom: 13px;
+	margin-left: 7px;
+}
+
+.username {
+	max-width: 102px;
+	display: flex;
+	column-gap: 4px;
+	align-items: center;
+}
+
+.username a {
+	font-size: 20px;
+	font-weight: 400;
+	color: #c4c9cc;
+	cursor: pointer;
+	transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out,
+		text-decoration 0.2s ease-in-out, background-color 0.2s ease-in-out,
+		-webkit-text-decoration 0.2s ease-in-out;
+}
+
+.username a:hover {
+	color: #4cb7eb;
+}
+
+.publicationDate {
+	font-size: 16px;
+	font-weight: 400;
+	color: #c4c9cc;
+}
+
+.views {
+	display: flex;
+	column-gap: 7px;
+	color: #c4c9cc;
+}
+
+.views img {
+	max-width: 16px;
+	filter: invert(1);
+}
+
+.title {
+	max-width: 733px;
+	margin-left: 7px;
+	margin-bottom: 14px;
+}
+
+.title h2 {
+	font-size: 24px;
+	font-weight: 500;
+	color: #c4c9cc;
+	margin-bottom: 5px;
+}
+
+.title h3 {
+	font-size: 16px;
+	font-weight: 400;
+	color: #c4c9cc;
+}
+
+.newsImage {
+	max-width: 740px;
+	margin-bottom: 13px;
+}
+
+.newsImage img {
+	width: 100%;
+}
+
+.bottomSide {
+	display: flex;
+	justify-content: space-between;
+}
+
+.like {
+	display: flex;
+	margin-left: 10px;
+	column-gap: 10px;
+	color: #c4c9cc;
+	align-items: center;
+	font-size: 18px;
+}
+
+.heart {
+	max-width: 26px;
+	height: 26px;
+	filter: invert(1);
+}
+
+.heart img {
+	width: 100%;
+}
+
+.readNext {
+	justify-content: end;
+	margin-right: 14px;
+	line-height: 41px;
+}
+
+.readNext a {
+	color: #4cb7eb;
+	border: 1px solid #4cb7eb;
+	padding: 11px 17px;
+	transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out,
+		text-decoration 0.2s ease-in-out, background-color 0.2s ease-in-out,
+		-webkit-text-decoration 0.2s ease-in-out;
+}
+
+.readNext a:hover {
+	color: #1e2122;
+	background-color: #4cb7eb;
+}

@@ -1,0 +1,72 @@
+.rightSide {
+	width: 280px;
+	background-color: #1e2122;
+	padding: 18px 18px;
+}
+
+.search {
+	display: flex;
+	flex-direction: column;
+	row-gap: 11px;
+	margin-bottom: 11px;
+}
+
+.search span {
+	font-size: 16px;
+	font-weight: 400;
+	color: #c4c9cc;
+}
+
+.findInput {
+	display: flex;
+}
+
+.findInput input {
+	max-width: 170px;
+	height: 25px;
+	outline: none;
+	padding: 9px 2px;
+	font-size: 16px;
+}
+
+.findInput button {
+	font-size: 14px;
+	font-weight: 400;
+	color: #1e2122;
+	padding: 4px 14px;
+	background-color: #4cb7eb;
+	border-radius: 0 4px 4px 0;
+	border: none;
+}
+
+.bestNews {
+	font-size: 16px;
+	font-weight: 400;
+	color: #c4c9cc;
+	margin-bottom: 11px;
+}
+
+.bestNews p {
+	margin-bottom: 11px;
+}
+
+.bestNews a {
+	max-width: 244px;
+}
+
+.bestNewsLink img {
+	max-width: 244px;
+	margin-bottom: 4px;
+}
+
+.bestNewsLink span {
+	font-size: 12px;
+	font-weight: 400;
+	color: #c4c9cc;
+}
+
+.bestNewsContainer {
+	display: flex;
+	flex-direction: column;
+	row-gap: 18px;
+}
