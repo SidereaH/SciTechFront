@@ -11,6 +11,7 @@ const CreateArticle = () => {
 		description: '',
 		content: '',
 		category: '',
+		status: 'PUBLISHED',
 	})
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState(null)
@@ -54,7 +55,7 @@ const CreateArticle = () => {
 		setError(null)
 
 		try {
-			const response = await fetch('https://your-api-endpoint.com/articles', {
+			const response = await fetch('http://localhost:8083/api/news', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
