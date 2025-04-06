@@ -10,7 +10,7 @@ const CreateArticle = () => {
 		title: '',
 		description: '',
 		content: '',
-		category: '',
+		theme: '',
 		status: 'PUBLISHED',
 	})
 	const [isLoading, setIsLoading] = useState(false)
@@ -27,9 +27,9 @@ const CreateArticle = () => {
 	]
 
 	const toggleDropdown = () => setIsOpen(!isOpen)
-	const selectCategory = category => {
-		setSelectedCategory(category)
-		setFormData({ ...formData, category })
+	const selectCategory = theme => {
+		setSelectedCategory(theme)
+		setFormData({ ...formData, theme })
 		setIsOpen(false)
 	}
 
@@ -41,12 +41,7 @@ const CreateArticle = () => {
 	const handleSubmit = async e => {
 		e.preventDefault()
 
-		if (
-			!formData.title ||
-			!formData.description ||
-			!formData.content ||
-			!formData.category
-		) {
+		if (!formData.title || !formData.description || !formData.content) {
 			setError('Пожалуйста, заполните все поля')
 			return
 		}
@@ -76,7 +71,7 @@ const CreateArticle = () => {
 				title: '',
 				description: '',
 				content: '',
-				category: '',
+				theme: '',
 			})
 			setSelectedCategory('Выберите категорию')
 		} catch (err) {
@@ -107,13 +102,13 @@ const CreateArticle = () => {
 						</div>
 						{isOpen && (
 							<div className={styles.dropdownList}>
-								{categories.map((category, index) => (
+								{categories.map((theme, index) => (
 									<div
 										key={index}
 										className={styles.dropdownItem}
-										onClick={() => selectCategory(category)}
+										onClick={() => selectCategory(theme)}
 									>
-										{category}
+										{theme}
 									</div>
 								))}
 							</div>
