@@ -1,0 +1,136 @@
+.mainContent {
+	max-width: 1091px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.articlsProfile {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+}
+
+.profileContainer {
+	max-width: 780px;
+	background-color: #1e2122;
+	padding: 40px 0 15px 0;
+}
+
+.profile {
+	display: flex;
+	margin: 0 21px 50px 45px;
+	justify-content: space-between;
+}
+
+.profileImg {
+	max-width: 140px;
+}
+
+.profileImg img {
+	width: 100%;
+}
+
+.aboutUser {
+	max-width: 552px;
+}
+
+.usernameEdit {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 6px 0 10px 0;
+	color: #c4c9cc;
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.usernameEdit img {
+	max-width: 24px;
+	filter: invert(1);
+	cursor: pointer;
+}
+
+.decriptionProfile {
+	font-size: 16px;
+	color: #c4c9cc;
+	font-weight: 400;
+	margin-bottom: 35px;
+}
+
+.online {
+	font-size: 14px;
+	font-weight: 400;
+	color: #4cb7eb;
+	padding: 5px 8px;
+	border: 1px solid #4cb7eb;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.filters {
+	margin-left: 45px;
+	display: flex;
+}
+
+.filtersBtn {
+	width: 135px;
+	text-align: center;
+	color: #4cb7eb;
+	padding: 7px 0 7px 0;
+	background-color: #1e2122;
+	border-radius: 0 0 4px 4px;
+	border: 1px solid #4cb7eb;
+	cursor: pointer;
+}
+
+.active {
+	background-color: #4cb7eb;
+	color: #1e2122;
+}
+
+.article {
+	background-color: #1e2122;
+	padding: 25px 32px 32px 32px;
+	max-width: 780px;
+}
+
+h4 {
+	font-size: 20px;
+	font-weight: 400;
+	color: #4cb7eb;
+	margin-bottom: 24px;
+}
+
+.title {
+	font-size: 15px;
+	font-weight: 400;
+	color: #c4c9cc;
+	margin-bottom: 14px;
+}
+
+.articleImg {
+	max-width: 717px;
+	margin-bottom: 24px;
+}
+
+.articleImg img {
+	width: 100%;
+}
+
+.articleDescription {
+	font-size: 20px;
+	font-weight: 400;
+	color: #c4c9cc;
+	margin-bottom: 25px;
+}
+
+.readNext {
+	font-size: 12px;
+	font-weight: 400;
+	color: #4cb7eb;
+	padding: 10px 22px;
+	border: 1px solid #4cb7eb;
+	border-radius: 4px;
+	background-color: #1e2122;
+}

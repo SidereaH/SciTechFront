@@ -92,6 +92,22 @@ section {
 	justify-content: space-between;
 }
 
+.heartButton {
+	transition: transform 0.2s ease;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.heartButton:hover {
+	transform: scale(1.1);
+}
+
+.heartButton:active {
+	transform: scale(0.9);
+}
+
 .like {
 	display: flex;
 	margin-left: 10px;
@@ -105,6 +121,7 @@ section {
 	max-width: 26px;
 	height: 26px;
 	filter: invert(1);
+	cursor: pointer;
 }
 
 .heart img {

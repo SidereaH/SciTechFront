@@ -1,0 +1,6 @@
+.mainContainer {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1087px;
+	margin: 0 auto;
+}

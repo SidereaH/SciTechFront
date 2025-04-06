@@ -63,6 +63,13 @@
 	font-size: 12px;
 	font-weight: 400;
 	color: #c4c9cc;
+	transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out,
+		text-decoration 0.2s ease-in-out, background-color 0.2s ease-in-out,
+		-webkit-text-decoration 0.2s ease-in-out;
+}
+
+.bestNewsLink span:hover {
+	color: #4cb7eb;
 }
 
 .bestNewsContainer {

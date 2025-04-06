@@ -1,0 +1,166 @@
+.makeArticle {
+	max-width: 1087px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.content {
+	max-width: 780px;
+	width: 100%;
+	background-color: #1e2122;
+	padding: 30px 20px;
+}
+
+.title {
+	font-size: 30px;
+	text-align: center;
+	max-width: 550px;
+	margin: 0 auto;
+	color: #c4c9cc;
+	margin-bottom: 24px;
+}
+
+.inputsContent {
+	max-width: 550px;
+	margin: 0 auto;
+}
+
+.dropdownContainer {
+	max-width: 550px;
+	margin: 0 auto 24px auto;
+	position: relative;
+}
+
+.dropdownHeader {
+	padding: 12px;
+	font-size: 19px;
+	background-color: #c4c9cc;
+	border-radius: 4px;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #1e2122;
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	transition: transform 0.2s ease;
+}
+
+.down {
+	border-top: 6px solid #1e2122;
+}
+
+.up {
+	border-bottom: 6px solid #1e2122;
+	transform: translateY(-2px);
+}
+
+.dropdownList {
+	position: absolute;
+	width: 100%;
+	max-height: 200px;
+	overflow-y: auto;
+	background-color: #c4c9cc;
+	border-radius: 4px;
+	z-index: 10;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	margin-top: 4px;
+}
+
+.dropdownItem {
+	padding: 12px;
+	cursor: pointer;
+	color: #1e2122;
+	font-size: 18px;
+}
+
+.dropdownItem:hover {
+	background-color: #a1a6a9;
+}
+
+.errorMessage {
+	color: #ff6b6b;
+	text-align: center;
+	margin-bottom: 16px;
+	font-size: 18px;
+}
+
+.successMessage {
+	color: #51cf66;
+	text-align: center;
+	margin-bottom: 16px;
+	font-size: 18px;
+}
+
+.makeArticleBtn button:disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+}
+
+.makeArticleBtn button:disabled:hover {
+	color: #4cb7eb;
+	background-color: #1e2122;
+}
+
+.inputTitle {
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	margin-bottom: 16px;
+}
+
+.inputTitle p {
+	font-size: 22px;
+	color: #c4c9cc;
+	margin-left: 10px;
+}
+
+.inputTitle input {
+	padding: 12px 12px;
+	font-size: 19px;
+	border: none;
+	outline: none;
+	background-color: #c4c9cc;
+	border-radius: 4px;
+}
+
+.inputTitle textarea {
+	padding: 12px 12px;
+	font-size: 19px;
+	border: none;
+	outline: none;
+	background-color: #c4c9cc;
+	border-radius: 8px;
+	height: 350px;
+}
+
+.makeArticleBtn {
+	justify-content: end;
+	margin-right: 14px;
+	line-height: 41px;
+	display: flex;
+	justify-content: end;
+
+	margin: 20px 60px 0 0;
+}
+
+.makeArticleBtn button {
+	color: #4cb7eb;
+	border: 1px solid #4cb7eb;
+	background-color: #1e2122;
+	padding: 11px 17px;
+	transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out,
+		text-decoration 0.2s ease-in-out, background-color 0.2s ease-in-out,
+		-webkit-text-decoration 0.2s ease-in-out;
+}
+
+.makeArticleBtn button:hover {
+	color: #1e2122;
+	background-color: #4cb7eb;
+}
