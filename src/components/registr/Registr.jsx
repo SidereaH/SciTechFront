@@ -42,6 +42,7 @@ const Registr = () => {
 			)
 
 			console.log('Успешная регистрация', response.data, role)
+			localStorage.setItem('userId', response.data.id)
 			navigate('/signin')
 		} catch (error) {
 			console.error('Ошибка ', error)

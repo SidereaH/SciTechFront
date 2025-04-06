@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './CreateArticle.module.css'
 import Header from '../header/Header'
 import RightSide from '../mainRightSide/RightSide'
 
 const CreateArticle = () => {
 	const [isOpen, setIsOpen] = useState(false)
+	// Получаем userId из localStorage
+	const userId = localStorage.getItem('userId')
+	// Преобразуем в число, если userId существует
+	const numericUserId = userId ? Number(userId) : null
+
 	const [selectedCategory, setSelectedCategory] = useState('Выберите категорию')
 	const [formData, setFormData] = useState({
 		title: '',
@@ -12,10 +17,26 @@ const CreateArticle = () => {
 		content: '',
 		theme: '',
 		status: 'PUBLISHED',
+		tags: ['science', 'discovery'],
+		ownerId: numericUserId, // Используем преобразованный userId
 	})
+
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState(null)
 	const [success, setSuccess] = useState(false)
+
+	// Обновляем ownerId при изменении userId
+	useEffect(() => {
+		const currentUserId = localStorage.getItem('userId')
+		const currentNumericUserId = currentUserId ? Number(currentUserId) : null
+
+		setFormData(prev => ({
+			...prev,
+			ownerId: currentNumericUserId,
+		}))
+	}, [userId]) // Зависимость от userId
+
+	// ... остальной код без изменений ...
 
 	const categories = [
 		'Технологии',
