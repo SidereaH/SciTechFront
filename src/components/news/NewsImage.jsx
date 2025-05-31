@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './NewsImage.module.css'
 import axios from 'axios'
 import usernameLogo from '../../assets/img/usernameLogo.png'
@@ -6,7 +6,32 @@ import catNews from '../../assets/img/catNews.png'
 import eye from '../../assets/img/eye.png'
 import blackHeart from '../../assets/img/blackHeart.svg'
 import redHeart from '../../assets/img/redHeart.png'
+function RenderAndCutHTML({ html, maxLength = 100 }) {
+	const containerRef = useRef(null)
+	const [cutText, setCutText] = useState('')
 
+	useEffect(() => {
+		if (containerRef.current) {
+			const textContent = containerRef.current.textContent || ''
+			const trimmedText =
+				textContent.length > maxLength
+					? textContent.substring(0, maxLength) + '...'
+					: textContent
+			setCutText(trimmedText)
+		}
+	}, [html, maxLength])
+
+	return (
+		<>
+			<div
+				ref={containerRef}
+				dangerouslySetInnerHTML={{ __html: html }}
+				style={{ display: 'none' }}
+			/>
+			<div>{cutText}</div>
+		</>
+	)
+}
 const NewsImage = ({ id, username, title, description }) => {
 	const [liked, setLiked] = useState(false)
 	const [likeCount, setLikeCount] = useState('')
@@ -18,7 +43,7 @@ const NewsImage = ({ id, username, title, description }) => {
 	useEffect(() => {
 		const fetchLikes = async () => {
 			try {
-				const url = `http://localhost:8083/api/news/stats/get-likes/${id}`
+				const url = `http://45.155.204.6:5084/api/news/stats/get-likes/${id}`
 				const response = await axios.get(url)
 				setLikeCount(response.data)
 			} catch (error) {
@@ -40,7 +65,7 @@ const NewsImage = ({ id, username, title, description }) => {
 		setLikeCount(newLikeCount)
 
 		try {
-			const url = `http://localhost:8083/api/news/stats/${
+			const url = `http://45.155.204.6:5084/api/news/stats/${
 				newLikeStatus ? 'add-like' : 'del-like'
 			}/${id}`
 
@@ -90,7 +115,9 @@ const NewsImage = ({ id, username, title, description }) => {
 
 			<div className={styles.title}>
 				<h2>{title}</h2>
-				<h3>{description}</h3>
+				<h3>
+					<RenderAndCutHTML html={description} maxLength={170} />
+				</h3>
 			</div>
 
 			<div className={styles.bottomSide}>
@@ -124,7 +151,7 @@ const NewsList = () => {
 		const fetchPopularNews = async () => {
 			try {
 				const response = await axios.get(
-					'http://localhost:8083/api/news/popular?page=0&size=100'
+					'http://45.155.204.6:5084/api/news/popular?page=0&size=100'
 				)
 
 				setNews(response.data.content || response.data)
@@ -152,7 +179,7 @@ const NewsList = () => {
 					theme={item.theme}
 					status={item.status}
 					title={item.title}
-					description={item.description}
+					description={item.content}
 				/>
 			))}
 		</div>

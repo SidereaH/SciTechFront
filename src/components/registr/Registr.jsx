@@ -25,7 +25,7 @@ const Registr = () => {
 		}
 
 		setIsLoading(true)
-		const url = `http://localhost:8082/signup`
+		const url = `http://45.155.204.6:5082/signup`
 		try {
 			const response = await axios.post(
 				url,

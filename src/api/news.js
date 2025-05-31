@@ -14,15 +14,11 @@
  * @param {string} newsData.dateOfCreation - Дата создания (формат YYYY-MM-DD)
  * @returns {Promise<object>} Созданная новость
  */
-export const createNews = async (newsData) => {
-    try {
-      return await apiRequest(
-        'POST',
-        '/api/news',
-        newsData
-      );
-    } catch (error) {
-      console.error('Ошибка при создании новости:', error);
-      throw error;
-    }
-  };
+export const createNews = async newsData => {
+	try {
+		return await apiRequest('POST', '/api/news', newsData)
+	} catch (error) {
+		console.error('Ошибка при создании новости:', error)
+		throw error
+	}
+}

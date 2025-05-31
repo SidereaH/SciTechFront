@@ -1,0 +1,84 @@
+stages:
+  - clean_latest
+  - build
+  - deploy
+
+variables:
+  CI_REGISTRY: 'registry.gitlab.com'
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+  CI_REGISTRY_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH
+build:
+  stage: build
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  variables:
+
+    #CI_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$IMAGE_TAG .
+    - docker push $CI_REGISTRY_IMAGE:$IMAGE_TAG
+    - docker tag $CI_REGISTRY_IMAGE:$IMAGE_TAG $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest
+    - echo $IMAGE_TAG > adminpanel.tag
+  artifacts:
+    paths:
+      - adminpanel.tag
+  only:
+    - main
+
+# trigger_deploy:
+#   stage: deploy
+#   script:
+#     - 'curl --request POST --form token=$DEPLOY_REPO_TRIGGER_TOKEN --form  ref=main --form "variables[ORDER_SERVICE_APP_TAG]=$CI_COMMIT_SHORT_SHA" https://gitlab.com/api/v4/projects/68997048/trigger/pipeline'
+#   only:
+#     - main
+#
+#deploy_docker_stage:
+#  environment:
+#    name: stage
+#    url: https://someurl
+#  image: docker:19.03.1
+#  services:
+#    - docker:19.03.1-dind
+#  stage: deploy
+#  variables:
+#    DOCKER_HOST: "tcp://${DOCKER_HOST}"
+#  before_script:
+#    - apk add jq
+#    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#  script:
+#  - export CONFIG=$(echo $CONFIG1_STAGE | jq -c) && docker stack deploy --with-registry-auth -c ./docker/stage/app.yml app
+deploy:
+  stage: deploy
+  retry:
+    max: 2
+    when:
+      - script_failure
+      - api_failure
+      - runner_system_failure
+  variables:
+    APP_TAG: $CI_COMMIT_SHORT_SHA
+    CONTAINER_NAME: scitech-admin # Define a variable for container name
+  script:
+    - sudo docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+    # Stop and remove existing container if it exists
+    - if sudo docker ps -a | grep -q $CONTAINER_NAME; then
+      sudo docker stop $CONTAINER_NAME;
+      sudo docker rm $CONTAINER_NAME;
+      fi
+
+    - sudo docker stop /scitech-admin || true
+    - sudo docker rm /scitech-admin || true
+
+    - sudo docker rmi $(sudo docker images --filter=reference='registry.gitlab.com/scitech_78/scitechfront:*' -q) || true
+
+    # Pull the latest image
+    - sudo docker pull registry.gitlab.com/scitech_78/scitechfront:${APP_TAG}
+
+    # Run new container with cleanup on stop and restart policy
+    - sudo docker run -d --name $CONTAINER_NAME --restart unless-stopped -p 8083:8083 -e "VITE_MAIN_API_URL=${VITE_MAIN_API_URL}" registry.gitlab.com/scitech_78/scitechfront:latest
+  tags:
+    - cloudru

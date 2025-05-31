@@ -16,7 +16,7 @@ const CreateArticle = () => {
 		description: '',
 		content: '',
 		theme: '',
-		status: 'PUBLISHED',
+		status: 'Опубликовано',
 		tags: ['science', 'discovery'],
 		ownerId: numericUserId, // Используем преобразованный userId
 	})
@@ -71,7 +71,7 @@ const CreateArticle = () => {
 		setError(null)
 
 		try {
-			const response = await fetch('http://localhost:8083/api/news', {
+			const response = await fetch('http://45.155.204.6:5084/api/news', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

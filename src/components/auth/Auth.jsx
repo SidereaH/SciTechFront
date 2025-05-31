@@ -21,7 +21,7 @@ const Auth = () => {
 
 		setIsLoading(true)
 
-		const url = `http://localhost:8082/signin`
+		const url = `http://45.155.204.6:5082/signin`
 
 		try {
 			const response = await axios.post(

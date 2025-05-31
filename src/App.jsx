@@ -7,6 +7,7 @@ import { PrivateRoute } from './components/PrivateRoute'
 import Profile from './components/profile/Profile'
 import CreateArticle from './components/createArticle/CreateArticle'
 import ArticlePage from './pages/ArticlePage'
+import Article from './components/article/Article'
 
 function App() {
 	return (
@@ -31,14 +32,7 @@ function App() {
 						</PrivateRoute>
 					}
 				/>
-				<Route
-					path='/acticle/1'
-					element={
-						<PrivateRoute>
-							<ArticlePage />
-						</PrivateRoute>
-					}
-				/>
+				<Route path='/article/:id' element={<Article />} />
 			</Routes>
 		</BrowserRouter>
 	)

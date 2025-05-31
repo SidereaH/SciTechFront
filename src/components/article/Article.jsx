@@ -1,31 +1,105 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../header/Header'
-import NewsImage from '../news/NewsImage'
 import RightSide from '../mainRightSide/RightSide'
 import styles from './Article.module.css'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import DOMPurify from 'dompurify'
+import { format } from 'date-fns'
+import { ru } from 'date-fns/locale'
 import usernameLogo from '../../assets/img/usernameLogo.png'
-import catNews from '../../assets/img/catNews.png'
-
 const Article = () => {
-	return (
-		<div>
-			<Header />
+	const { id } = useParams()
+	const [news, setNews] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
 
-			<div className={styles.mainContainer}>
-				<div className={styles.container}>
-					<NewsImage
-						idPost='1'
-						username='Fodi'
-						ago='2 часа назад'
-						views='351'
-						h2Title='Супер крутой заголовок про новость'
-						h3Title='Описание супер крутой новости, как же круууто, Описание супер крутой новости, как же круууто, Описание супер крутой новости, как же круууто'
-						usernameLogo={usernameLogo}
-						catNewsImg={catNews}
-					/>
+	useEffect(() => {
+		const fetchNews = async () => {
+			try {
+				const response = await axios.get(
+					`http://45.155.204.6:5084/api/news/id/${id}`
+				)
+				setNews(response.data)
+			} catch (err) {
+				setError(err.message)
+				console.error('Ошибка при загрузке новостей:', err)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		fetchNews()
+	}, [id])
+
+	const formatDate = dateString => {
+		return format(new Date(dateString), 'd MMMM yyyy', { locale: ru })
+	}
+
+	const renderHTML = html => {
+		const cleanHtml = DOMPurify.sanitize(html)
+		return { __html: cleanHtml }
+	}
+
+	if (loading) return <div className={styles.loading}>Загрузка новости...</div>
+	if (error) return <div className={styles.error}>Ошибка: {error}</div>
+	if (!news) return <div className={styles.error}>Новость не найдена</div>
+
+	return (
+		<div className={styles.pageContainerDark}>
+			<Header darkMode={true} />
+
+			<div className={styles.mainContainerDark}>
+				<div className={styles.articleContainerDark}>
+					<article className={styles.articleDark}>
+						<div className={styles.articleHeaderDark}>
+							<div className={styles.tagsDark}>
+								{news.tags.map((tag, index) => (
+									<span key={index} className={styles.tagDark}>
+										#{tag}
+									</span>
+								))}
+							</div>
+							<h1 className={styles.titleDark}>{news.title}</h1>
+
+							<div className={styles.metaDark}>
+								<span className={styles.dateDark}>
+									{formatDate(news.dateOfCreation)}
+								</span>
+								<span className={styles.viewsDark}>
+									Просмотров: {news.shows}
+								</span>
+								<span className={styles.likesDark}>Лайков: {news.likes}</span>
+							</div>
+						</div>
+
+						<div className={styles.articleContentDark}>
+							<div
+								className={styles.contentDark}
+								dangerouslySetInnerHTML={renderHTML(news.content)}
+							/>
+						</div>
+
+						<div className={styles.articleFooterDark}>
+							<div className={styles.authorInfoDark}>
+								<div className={styles.authorAvatarDark}>
+									<img src={usernameLogo} alt='Автор' />
+								</div>
+								<div className={styles.authorDetailsDark}>
+									<span className={styles.authorNameDark}>
+										Автор: ID {news.ownerId}
+									</span>
+									<span className={styles.articleStatusDark}>
+										{news.status}
+									</span>
+								</div>
+							</div>
+						</div>
+					</article>
 				</div>
-				<div>
-					<RightSide />
+
+				<div className={styles.sidebarDark}>
+					<RightSide darkMode={true} />
 				</div>
 			</div>
 		</div>
