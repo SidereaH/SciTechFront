@@ -6,7 +6,7 @@ stages:
 variables:
   CI_REGISTRY: 'registry.gitlab.com'
   IMAGE_TAG: latest
-  CI_REGISTRY_IMAGE: $CI_REGISTRY/scitechfront
+  CI_REGISTRY_IMAGE: $CI_REGISTRY/scitech_78/scitechfront
 build:
   stage: build
   image: docker:24.0
