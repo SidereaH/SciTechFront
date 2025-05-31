@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './RightSide.module.css'
 import Filter from './Filter'
 
 const RightSide = () => {
+	const [isOpen, setIsOpen] = useState(false)
+
 	return (
-		<div className={styles.rightSide}>
-			<Filter />
-		</div>
+		<>
+			<button
+				className={styles.mobileToggle}
+				onClick={() => setIsOpen(!isOpen)}
+			>
+				{isOpen ? '×' : '≡'}
+			</button>
+
+			<div className={`${styles.rightSide} ${isOpen ? styles.open : ''}`}>
+				<Filter />
+			</div>
+		</>
 	)
 }
 

@@ -65,7 +65,7 @@ const StyledWrapper = styled.div`
 		display: flex;
 		align-items: center;
 		gap: 15px;
-		padding: 0px 20px;
+		padding: 0px 10px;
 		width: 220px;
 		cursor: pointer;
 		height: 25px;
@@ -79,7 +79,7 @@ const StyledWrapper = styled.div`
 		left: 50%;
 		transform: translate(-50%, -50%);
 		width: 220px;
-		height: 45px;
+		height: 25px;
 		z-index: -1;
 		transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 		border-radius: 10px;
@@ -93,7 +93,7 @@ const StyledWrapper = styled.div`
 	.radio-input .label:has(input:checked)::before {
 		background-color: #2d3750;
 		border-color: #435dd8;
-		height: 50px;
+		height: 30px;
 	}
 	.radio-input .label .text {
 		color: #fff;
