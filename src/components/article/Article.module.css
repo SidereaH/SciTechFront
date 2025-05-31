@@ -193,3 +193,45 @@
 .contentDark th {
 	background-color: #333;
 }
+.mainContainerDark {
+	display: flex;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	gap: 30px;
+	/* Добавляем адаптацию для мобильных */
+	flex-direction: column;
+}
+
+@media (min-width: 992px) {
+	.mainContainerDark {
+		flex-direction: row;
+	}
+}
+
+.articleContainerDark {
+	flex: 1;
+	min-width: 0; /* Важно для предотвращения схлопывания */
+	background: var(--dark-surface);
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+
+.sidebarDark {
+	width: 300px;
+	min-width: 300px; /* Фиксированная ширина сайдбара */
+}
+
+/* Для мобильных устройств - сайдбар под контентом */
+@media (max-width: 991px) {
+	.sidebarDark {
+		width: 100%;
+		min-width: 100%;
+		order: 2; /* Перемещаем сайдбар после контента */
+	}
+
+	.articleContainerDark {
+		order: 1; /* Контент перед сайдбаром */
+	}
+}
