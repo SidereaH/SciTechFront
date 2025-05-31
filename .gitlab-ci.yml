@@ -81,4 +81,4 @@ deploy:
     # Run new container with cleanup on stop and restart policy
     - sudo docker run -d --name $CONTAINER_NAME --restart unless-stopped -p 8083:8083 -e "VITE_MAIN_API_URL=${VITE_MAIN_API_URL}" registry.gitlab.com/scitech_78/scitechfront:latest
   tags:
-    - cloudru
+    - scitech_cloudru
