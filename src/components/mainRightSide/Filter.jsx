@@ -16,20 +16,8 @@ const Filter = () => {
 			</div>
 			<Radio />
 			<div className={styles.bestNews}>
-				<p>Полезные статьи</p>
+				<span>Полезные статьи</span>
 				<div className={styles.bestNewsContainer}>
-					<BestNews
-						titleInterest='Что будет, если не использовать TCP или UDP?'
-						imgInterest={BestNewsImg}
-					/>
-					<BestNews
-						titleInterest='Что будет, если не использовать TCP или UDP?'
-						imgInterest={BestNewsImg}
-					/>
-					<BestNews
-						titleInterest='Что будет, если не использовать TCP или UDP?'
-						imgInterest={BestNewsImg}
-					/>
 					<BestNews
 						titleInterest='Что будет, если не использовать TCP или UDP?'
 						imgInterest={BestNewsImg}

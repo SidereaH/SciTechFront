@@ -1,18 +1,15 @@
-.mainContainer {
-	display: flex;
-	justify-content: space-between;
-	max-width: 1087px;
-	margin: 0 auto;
-}
-/* Основные цвета темной темы */
 :root {
-	--dark-bg: #121212;
-	--dark-surface: #1e1e1e;
-	--dark-primary: #bb86fc;
-	--dark-secondary: #03dac6;
-	--dark-text: #e1e1e1;
-	--dark-text-secondary: #a0a0a0;
-	--dark-divider: #333333;
+	/* Цветовая схема для темной темы */
+	--dark-bg: #0f172a;
+	--dark-surface: #1e293b;
+	--dark-text: #f8fafc;
+	--dark-text-secondary: #94a3b8;
+	--dark-primary: #60a5fa;
+	--dark-secondary: #64748b;
+	--dark-divider: #334155;
+	--dark-error: #f87171;
+	--dark-success: #4ade80;
+	--dark-warning: #fbbf24;
 }
 
 .pageContainerDark {
@@ -25,16 +22,30 @@
 	display: flex;
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 20px;
+	padding: 0 20px;
 	gap: 30px;
+	flex-direction: column;
+}
+
+@media (min-width: 992px) {
+	.mainContainerDark {
+		flex-direction: row;
+	}
 }
 
 .articleContainerDark {
 	flex: 1;
+	min-width: 0;
 	background: var(--dark-surface);
-	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	border-radius: 12px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.articleContainerDark:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .articleDark {
@@ -49,16 +60,23 @@
 
 .tagsDark {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 8px;
 	margin-bottom: 15px;
 }
 
 .tagDark {
-	background: #333;
-	padding: 4px 10px;
+	background: rgba(96, 165, 250, 0.1);
+	padding: 6px 12px;
 	border-radius: 20px;
-	font-size: 0.8rem;
-	color: var(--dark-secondary);
+	font-size: 0.85rem;
+	color: var(--dark-primary);
+	border: 1px solid rgba(96, 165, 250, 0.3);
+	transition: all 0.2s ease;
+}
+
+.tagDark:hover {
+	background: rgba(96, 165, 250, 0.2);
 }
 
 .titleDark {
@@ -66,46 +84,56 @@
 	margin: 0 0 15px 0;
 	color: var(--dark-text);
 	line-height: 1.3;
+	font-weight: 700;
 }
 
 .metaDark {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 15px;
+	align-items: center;
 	color: var(--dark-text-secondary);
 	font-size: 0.9rem;
 	margin-bottom: 20px;
 }
 
 .articleContentDark {
-	line-height: 1.6;
+	line-height: 1.7;
 	font-size: 1.1rem;
+	color: var(--dark-text);
 }
 
 .articleContentDark img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 4px;
-	margin: 20px 0;
+	border-radius: 8px;
+	margin: 25px 0;
 	border: 1px solid var(--dark-divider);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .articleContentDark p {
-	margin-bottom: 20px;
-	color: var(--dark-text);
+	margin-bottom: 1.5em;
 }
 
 .articleContentDark a {
 	color: var(--dark-primary);
 	text-decoration: none;
+	font-weight: 500;
+	transition: all 0.2s ease;
 }
 
 .articleContentDark a:hover {
 	text-decoration: underline;
+	color: #93c5fd;
 }
 
-.articleContentDark b,
-.articleContentDark strong {
-	color: var(--dark-text);
+.articleContentDark code {
+	background: rgba(148, 163, 184, 0.1);
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-family: monospace;
+	font-size: 0.9em;
 }
 
 .articleFooterDark {
@@ -120,46 +148,79 @@
 	gap: 15px;
 }
 
-.authorAvatarDark img {
-	width: 50px;
-	height: 50px;
+.authorAvatarDark {
+	width: 56px;
+	height: 56px;
 	border-radius: 50%;
-	object-fit: cover;
+	overflow: hidden;
 	border: 2px solid var(--dark-primary);
+	transition: transform 0.3s ease;
+}
+
+.authorAvatarDark:hover {
+	transform: scale(1.05);
+}
+
+.authorAvatarDark img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .authorDetailsDark {
 	display: flex;
 	flex-direction: column;
+	gap: 4px;
 }
 
 .authorNameDark {
-	font-weight: 500;
+	font-weight: 600;
 	color: var(--dark-text);
 }
 
 .articleStatusDark {
-	color: var(--dark-secondary);
+	color: var(--dark-text-secondary);
 	font-size: 0.9rem;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 
 .sidebarDark {
-	width: 300px;
+	width: 100%;
 }
 
+@media (min-width: 992px) {
+	.sidebarDark {
+		width: 320px;
+		min-width: 320px;
+	}
+}
+
+/* Состояния загрузки и ошибок */
 .loading,
 .error {
 	text-align: center;
 	padding: 50px;
 	font-size: 1.2rem;
-	color: var(--dark-text);
+}
+
+.loading {
+	color: var(--dark-text-secondary);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
 }
 
 .error {
-	color: #ef5350;
+	color: var(--dark-error);
+	background: rgba(248, 113, 113, 0.1);
+	border-radius: 8px;
+	border: 1px solid var(--dark-error);
 }
 
-/* Стили для HTML контента в темной теме */
+/* Стили для HTML контента */
 .contentDark h1,
 .contentDark h2,
 .contentDark h3,
@@ -167,71 +228,81 @@
 .contentDark h5,
 .contentDark h6 {
 	color: var(--dark-text);
+	margin: 1.5em 0 0.8em;
+	font-weight: 600;
+}
+
+.contentDark h1 {
+	font-size: 2em;
+	border-bottom: 1px solid var(--dark-divider);
+	padding-bottom: 0.3em;
+}
+
+.contentDark h2 {
+	font-size: 1.7em;
+}
+
+.contentDark h3 {
+	font-size: 1.4em;
 }
 
 .contentDark blockquote {
 	border-left: 4px solid var(--dark-primary);
-	padding-left: 15px;
-	margin: 20px 0;
+	padding: 0 1em;
+	margin: 1.5em 0;
 	color: var(--dark-text-secondary);
+	font-style: italic;
+	background: rgba(96, 165, 250, 0.05);
+	border-radius: 0 4px 4px 0;
+}
+
+.contentDark ul,
+.contentDark ol {
+	margin: 1.5em 0;
+	padding-left: 2em;
+}
+
+.contentDark li {
+	margin-bottom: 0.5em;
 }
 
 .contentDark table {
 	border-collapse: collapse;
 	width: 100%;
-	margin: 20px 0;
+	margin: 1.5em 0;
 	border: 1px solid var(--dark-divider);
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 .contentDark th,
 .contentDark td {
-	padding: 10px;
+	padding: 12px 15px;
 	border: 1px solid var(--dark-divider);
 	text-align: left;
 }
 
 .contentDark th {
-	background-color: #333;
-}
-.mainContainerDark {
-	display: flex;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 20px;
-	gap: 30px;
-	/* Добавляем адаптацию для мобильных */
-	flex-direction: column;
+	background-color: rgba(51, 65, 85, 0.5);
+	font-weight: 600;
 }
 
-@media (min-width: 992px) {
-	.mainContainerDark {
-		flex-direction: row;
+.contentDark tr:nth-child(even) {
+	background-color: rgba(51, 65, 85, 0.2);
+}
+
+/* Анимация загрузки */
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
 	}
 }
 
-.articleContainerDark {
-	flex: 1;
-	min-width: 0; /* Важно для предотвращения схлопывания */
-	background: var(--dark-surface);
-	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-	overflow: hidden;
-}
-
-.sidebarDark {
-	width: 300px;
-	min-width: 300px; /* Фиксированная ширина сайдбара */
-}
-
-/* Для мобильных устройств - сайдбар под контентом */
-@media (max-width: 991px) {
-	.sidebarDark {
-		width: 100%;
-		min-width: 100%;
-		order: 2; /* Перемещаем сайдбар после контента */
-	}
-
-	.articleContainerDark {
-		order: 1; /* Контент перед сайдбаром */
-	}
+.loadingSpinner {
+	width: 40px;
+	height: 40px;
+	border: 4px solid rgba(148, 163, 184, 0.2);
+	border-top-color: var(--dark-primary);
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
 }

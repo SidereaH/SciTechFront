@@ -6,6 +6,7 @@ import catNews from '../../assets/img/catNews.png'
 import eye from '../../assets/img/eye.png'
 import blackHeart from '../../assets/img/blackHeart.svg'
 import redHeart from '../../assets/img/redHeart.png'
+import { usePopularNews } from '../hooks/useNews'
 function RenderAndCutHTML({ html, maxLength = 100 }) {
 	const containerRef = useRef(null)
 	const [cutText, setCutText] = useState('')
@@ -154,37 +155,22 @@ const NewsImage = ({ id, username, title, description }) => {
 		</section>
 	)
 }
-
 const NewsList = () => {
-	const [news, setNews] = useState([])
-	const [loading, setLoading] = useState(true)
-	const [error, setError] = useState(null)
-
-	useEffect(() => {
-		const fetchPopularNews = async () => {
-			try {
-				const response = await axios.get(
-					'http://45.155.204.6:5084/api/news/popular?page=0&size=100'
-				)
-
-				setNews(response.data.content || response.data)
-			} catch (err) {
-				setError(err.message)
-				console.error('Ошибка при загрузке новостей:', err)
-			} finally {
-				setLoading(false)
-			}
-		}
-
-		fetchPopularNews()
-	}, [])
+	// Правильная деструктуризация объекта
+	const { news, loading, error } = usePopularNews(0, 10)
 
 	if (loading) return <div className={styles.loading}>Загрузка новостей...</div>
-	if (error) return <div className={styles.error}>Ошибка: {error}</div>
+	if (error) return <div className={styles.error}>Ошибка: {error.message}</div>
+
+	if (!news || !news.content) {
+		return <div className={styles.empty}>Новости не найдены</div>
+	}
+
+	const newsItems = news.content || news
 
 	return (
 		<div className={styles.newsContainer}>
-			{news.map(item => (
+			{newsItems.map(item => (
 				<NewsImage
 					key={item.id}
 					id={item.id}

@@ -53,7 +53,7 @@ const Registr = () => {
 	}
 	return (
 		<div className={styles.mainContainer}>
-			<span className={styles.authText}>Регистрация</span>
+			<p className={styles.authText}>Регистрация</p>
 
 			{error && <div className={styles.error}>{error}</div>}
 

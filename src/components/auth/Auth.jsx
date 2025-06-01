@@ -51,7 +51,7 @@ const Auth = () => {
 	}
 	return (
 		<div className={styles.mainContainer}>
-			<span className={styles.authText}>Авторизация</span>
+			<h3 className={styles.authText}>Авторизация</h3>
 
 			{error && <div className={styles.error}>{error}</div>}
 
