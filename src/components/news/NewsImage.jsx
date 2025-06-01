@@ -135,7 +135,7 @@ const NewsImage = ({ id, username, title, description }) => {
 			</div>
 
 			<div className={styles.bottomSide}>
-				<div className={styles.like}>
+				{/* <div className={styles.like}>
 					<button
 						onClick={handleLike}
 						className={styles.heartButton}
@@ -146,7 +146,7 @@ const NewsImage = ({ id, username, title, description }) => {
 						</div>
 					</button>
 					<span>{formatNumber(likeCount)}</span>
-				</div>
+				</div> */}
 
 				<div className={styles.readNext}>
 					<a href={`/article/${id}`}>Читать дальше</a>

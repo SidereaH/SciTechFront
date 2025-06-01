@@ -26,6 +26,41 @@
 	gap: 30px;
 	flex-direction: column;
 }
+.heartButton {
+	transition: transform 0.2s ease;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.heartButton:hover {
+	transform: scale(1.1);
+}
+
+.heartButton:active {
+	transform: scale(0.9);
+}
+
+.like {
+	display: flex;
+	column-gap: 10px;
+	color: #cbd5e1;
+	align-items: center;
+	font-size: 16px;
+}
+
+.heart {
+	width: 24px;
+	height: 24px;
+	filter: invert(0.8);
+	cursor: pointer;
+}
+
+.heart img {
+	width: 100%;
+	height: 100%;
+}
 
 @media (min-width: 992px) {
 	.mainContainerDark {
@@ -41,12 +76,13 @@
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	margin-bottom: 60px;
 }
 
-.articleContainerDark:hover {
+/* .articleContainerDark:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
+} */
 
 .articleDark {
 	padding: 30px;
@@ -146,8 +182,16 @@
 	display: flex;
 	align-items: center;
 	gap: 15px;
+	justify-content: space-between;
 }
-
+.authorInfoDark :first-child {
+	display: flex;
+	align-items: center;
+}
+.authorInfoDark :first-child {
+	display: flex;
+	align-items: center;
+}
 .authorAvatarDark {
 	width: 56px;
 	height: 56px;
@@ -155,6 +199,7 @@
 	overflow: hidden;
 	border: 2px solid var(--dark-primary);
 	transition: transform 0.3s ease;
+	margin-right: 8px;
 }
 
 .authorAvatarDark:hover {
@@ -305,4 +350,9 @@
 	border-top-color: var(--dark-primary);
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
+}
+@media (max-width: 768px) {
+	.titleDark {
+		font-size: 24px;
+	}
 }

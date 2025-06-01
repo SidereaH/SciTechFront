@@ -178,6 +178,18 @@ section {
 		display: block;
 		text-align: center;
 	}
+	.title h2 {
+		font-size: 18px;
+		font-weight: 600;
+		color: #f8fafc;
+		margin-bottom: 8px;
+	}
+
+	.title h3 {
+		font-size: 14px;
+		font-weight: 400;
+		color: #cbd5e1;
+	}
 }
 .container {
 	background-color: #0f172a;
