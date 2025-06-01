@@ -178,9 +178,12 @@ span {
 	.rightSide {
 		position: fixed;
 		top: 0;
+		bottom: 0;
 		right: 0;
 		width: 303px;
-		height: 100vh;
+		height: 100vh; /* fallback */
+		height: -webkit-fill-available;
+		min-height: 100vh;
 		border-radius: 0;
 		border: none;
 		border-left: 1px solid #334155;
