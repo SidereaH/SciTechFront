@@ -13,7 +13,7 @@ const Article = () => {
 	const [news, setNews] = useState(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
-
+	const [viewsCount, setViewsCount] = useState(0)
 	useEffect(() => {
 		const fetchNews = async () => {
 			try {
@@ -30,6 +30,31 @@ const Article = () => {
 		}
 
 		fetchNews()
+	}, [id])
+	useEffect(() => {
+		console.log('works')
+		const addSeems = async () => {
+			try {
+				const url = `http://45.155.204.6:5084/api/news/stats/add-show/${id}`
+				const response = await axios.patch(url)
+				// setViewsCount(response.data)
+			} catch (error) {
+				console.error('Ошибка при загрузке лайков:', error)
+			}
+		}
+		addSeems()
+	}, [id])
+	useEffect(() => {
+		const fetchSeems = async () => {
+			try {
+				const url = `http://45.155.204.6:5084/api/news/stats/get-shows/${id}`
+				const response = await axios.get(url)
+				setViewsCount(response.data)
+			} catch (error) {
+				console.error('Ошибка при загрузке лайков:', error)
+			}
+		}
+		fetchSeems()
 	}, [id])
 
 	const formatDate = dateString => {

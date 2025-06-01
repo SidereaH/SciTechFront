@@ -54,6 +54,19 @@ const NewsImage = ({ id, username, title, description }) => {
 		fetchLikes()
 	}, [id])
 
+	useEffect(() => {
+		const fetchSeems = async () => {
+			try {
+				const url = `http://45.155.204.6:5084/api/news/stats/get-shows/${id}`
+				const response = await axios.get(url)
+				setViewsCount(response.data)
+			} catch (error) {
+				console.error('Ошибка при загрузке лайков:', error)
+			}
+		}
+		fetchSeems()
+	}, [id])
+
 	const handleLike = async () => {
 		if (isLoading) return
 
