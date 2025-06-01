@@ -28,9 +28,11 @@ const Header = () => {
 						<button onClick={logout}>Выйти</button>
 					</div>
 				) : (
-					<a className={styles.login} href='/signin'>
-						Войти
-					</a>
+					<div className={styles.profileOut}>
+						<a className={styles.login} href='/signin'>
+							Войти
+						</a>
+					</div>
 				)}
 			</div>
 		</header>
