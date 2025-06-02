@@ -123,7 +123,20 @@ const NewsImage = ({ id, username, title, description }) => {
 					{formatDate(new Date().toISOString())}
 				</span>
 				<div className={styles.views}>
+					{/* <span>понравилось: {formatNumber(likeCount)} | </span> */}
 					<span>{formatNumber(viewsCount)} просмотров</span>
+					<div className={styles.like}>
+						<div
+							// onClick={handleLike}
+							className={styles.heartButton}
+							// disabled={isLoading}
+						>
+							<div className={styles.heart}>
+								<img src={liked ? redHeart : blackHeart} alt='' />
+							</div>
+						</div>
+						<span>{formatNumber(likeCount)}</span>
+					</div>
 				</div>
 			</div>
 
@@ -135,19 +148,6 @@ const NewsImage = ({ id, username, title, description }) => {
 			</div>
 
 			<div className={styles.bottomSide}>
-				{/* <div className={styles.like}>
-					<button
-						onClick={handleLike}
-						className={styles.heartButton}
-						disabled={isLoading}
-					>
-						<div className={styles.heart}>
-							<img src={liked ? redHeart : blackHeart} alt='' />
-						</div>
-					</button>
-					<span>{formatNumber(likeCount)}</span>
-				</div> */}
-
 				<div className={styles.readNext}>
 					<a href={`/article/${id}`}>Читать дальше</a>
 				</div>
