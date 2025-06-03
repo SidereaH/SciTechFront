@@ -155,11 +155,26 @@ const NewsImage = ({ id, username, title, description }) => {
 		</section>
 	)
 }
-const NewsList = () => {
-	// Правильная деструктуризация объекта
-	const { news, loading, error } = usePopularNews(0, 10)
 
-	if (loading) return <div className={styles.loading}>Загрузка новостей...</div>
+const NewsList = () => {
+	const [currentPage, setCurrentPage] = useState(0)
+	const itemsPerPage = 10
+
+	const { news, loading, error } = usePopularNews(currentPage, itemsPerPage)
+
+	const handlePageChange = newPage => {
+		setCurrentPage(newPage)
+	}
+
+	if (loading)
+		return (
+			<div className={styles.loadingWrapper}>
+				<div className={styles.loadingContainer}>
+					<div className={styles.loadingSpinner}></div>
+				</div>
+			</div>
+		)
+
 	if (error) return <div className={styles.error}>Ошибка: {error.message}</div>
 
 	if (!news || !news.content) {
@@ -167,20 +182,79 @@ const NewsList = () => {
 	}
 
 	const newsItems = news.content || news
+	const totalPages = news.totalPages || 1
 
 	return (
-		<div className={styles.newsContainer}>
-			{newsItems.map(item => (
-				<NewsImage
-					key={item.id}
-					id={item.id}
-					username={item.owner}
-					theme={item.theme}
-					status={item.status}
-					title={item.title}
-					description={item.content}
+		<div>
+			<div className={styles.newsContainer}>
+				{newsItems.map(item => (
+					<NewsImage
+						key={item.id}
+						id={item.id}
+						username={item.owner}
+						theme={item.theme}
+						status={item.status}
+						title={item.title}
+						description={item.content}
+					/>
+				))}
+			</div>
+
+			<div className={styles.paginationContainer}>
+				<Pagination
+					page={currentPage + 1}
+					onPageChange={newPage => handlePageChange(newPage - 1)}
+					totalPages={totalPages}
 				/>
-			))}
+			</div>
+		</div>
+	)
+}
+
+const Pagination = ({ page, onPageChange, totalPages }) => {
+	const [isChanging, setIsChanging] = useState(false)
+
+	const handlePrev = () => {
+		if (page > 1) {
+			setIsChanging(true)
+			onPageChange(page - 1)
+			setTimeout(() => setIsChanging(false), 300)
+		}
+	}
+
+	const handleNext = () => {
+		if (page < totalPages) {
+			setIsChanging(true)
+			onPageChange(page + 1)
+			setTimeout(() => setIsChanging(false), 300)
+		}
+	}
+
+	return (
+		<div className={styles.pagination}>
+			<button
+				className={styles.paginationButton}
+				onClick={handlePrev}
+				disabled={page === 1}
+			>
+				&lt;
+			</button>
+
+			<span
+				className={`${styles.paginationPage} ${
+					isChanging ? styles.changing : ''
+				}`}
+			>
+				{page} / {totalPages}
+			</span>
+
+			<button
+				className={styles.paginationButton}
+				onClick={handleNext}
+				disabled={page === totalPages}
+			>
+				&gt;
+			</button>
 		</div>
 	)
 }
