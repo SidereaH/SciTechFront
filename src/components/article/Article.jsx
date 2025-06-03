@@ -164,9 +164,13 @@ const Article = () => {
 										<span className={styles.authorNameDark}>
 											Автор: ID {news.ownerId}
 										</span>
-										<span className={styles.articleStatusDark}>
-											{news.status}
-										</span>
+										<a
+											className={styles.articleStatusDark}
+											href={'https://наука.рф' + news.url}
+											target='_blank'
+										>
+											Источник
+										</a>
 									</div>
 								</div>
 
